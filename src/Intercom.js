@@ -1,46 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function Intercom() {
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  //   const [isLoaded, setIsLoaded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   //   const [items, setItems] = useState([]);
 
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
-  useEffect(() => {
-    fetch("http://74.71.87.249/")
-      .then(
-        (result) => {
-          setIsLoaded(true);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  }, []);
+  //   useEffect(() => {
+  //     fetch("http://74.71.87.249/")
+  //       .then(
+  //         (result) => {
+  //           setIsLoaded(true);
+  //         },
+  //         // Note: it's important to handle errors here
+  //         // instead of a catch() block so that we don't swallow
+  //         // exceptions from actual bugs in components.
+  //         (error) => {
+  //           setIsLoaded(true);
+  //           setError(error);
+  //         }
+  //       );
+  //   }, []);
 
   function openDoor() {
-    fetch("http://74.71.87.249/")
-      .then(
-        (result) => {
-          setIsOpen(true);
-        },
-        (error) => {
-          setError(error);
-        }
-      );
+    fetch("/.netlify/functions/open_door").then(
+      (result) => {
+        setIsOpen(true);
+        console.log(result);
+      },
+      (error) => {
+        setError(error);
+      }
+    );
   }
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
   } else {
     return (
       <div>
