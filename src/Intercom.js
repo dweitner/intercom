@@ -26,15 +26,17 @@ function Intercom() {
   //   }, []);
 
   function openDoor() {
-    fetch("/.netlify/functions/open_door").then(
-      (result) => {
-        setIsOpen(true);
-        console.log(result);
-      },
-      (error) => {
-        setError(error);
-      }
-    );
+    fetch("/.netlify/functions/dad_joke")
+      .then((response) => response.json())
+      .then(
+        (result) => {
+          setIsOpen(true);
+          console.log(result);
+        },
+        (error) => {
+          setError(error);
+        }
+      );
   }
 
   if (error) {
