@@ -1,5 +1,4 @@
-import fetch from "node-fetch";
-// const API_ENDPOINT = "http://74.71.87.249/";
+const fetch = require('node-fetch')
 
 export async function handler(event, context) {
     return fetch("http://74.71.87.249/")
