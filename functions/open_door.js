@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-const API_ENDPOINT = "http://http://74.71.87.249//";
+const API_ENDPOINT = "http://74.71.87.249/";
 
 exports.handler = async (event, context) => {
   return fetch(API_ENDPOINT)
